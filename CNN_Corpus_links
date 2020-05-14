@@ -1,6 +1,6 @@
 This folder contains the scraped text from all CNN Politics Section articles 
 published between Jan 2017 and Feb 2020 (in Corpus (188 MB) )
-as well the a file containing all the links to the articles scraped (allLinks).
+as well as a file containing all the links to the articles scraped (allLinks).
 Use CNNCorpusCleaner.py in this repo with this command: 
 python CNNCorpusCleaner.py < Corpus > BylineScrubbed_Corpus
 to generate a corpus w/o the date/authors at the front
