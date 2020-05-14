@@ -17,6 +17,7 @@ class word2vec():
         self.corpus = corpus
         self.corpus_len = len(corpus)
         self.vocab = 0
+        self.types_dict = {}
         self.word_dim = settings['word_dim']
         self.rate = settings['learning_rate']
         self.epochs = settings['epochs']
@@ -32,13 +33,17 @@ class word2vec():
         self.loss = 0
 
     def prep_for_training(self):
-        # create dict of distinct with array values
+        # create dict of distinct words with array values and count types
         index = 0
         for word in self.corpus:
             self.training_data[word] = []
             if word not in self.word_to_row:
                 self.word_to_row[word] = index
                 index += 1
+            if word not in self.types_dict:
+                self.types_dict[word] = 0
+            else:
+                self.types_dict[word] += 1
 
         # fill dict arrays with words that appear in context of corpus[i]
         for i in range(self.corpus_len):
@@ -51,6 +56,15 @@ class word2vec():
 
         self.weight1 = np.random.uniform(-0.8, 0.8, (self.vocab, self.word_dim))
         self.weight2 = np.random.uniform(-0.8, 0.8, (self.word_dim, self.vocab))
+
+    def initial_analysis(self):
+        avg_freq = 0
+        print("Types: " + str(self.vocab))
+        for _type in self.types_dict.keys():
+            avg_freq += self.types_dict[_type]
+        avg_freq = avg_freq/self.vocab
+        print("Average freq of types: " + str(avg_freq))
+
 
     def train(self):
         for i in range(self.epochs):
@@ -111,4 +125,5 @@ corpus = preprocessing(file.read())
 
 w2v = word2vec()
 w2v.prep_for_training()
+w2v.initial_analysis()
 w2v.train()
