@@ -1,3 +1,9 @@
+# My own implementation of word2vec (skip-gram) using numpy. It is flawed; namely, I realized I calculate
+# loss at the final layer (after softmax), where the correct output that I compare the output layer against
+# is a matrix with 1 at each row for a context word and 0 at each row for a word that doesn't appear in context
+# of the center word being considered. This means the model is not taking into account how frequently words
+# appear in the same context -- only if they do.
+
 # Sources:
 
 # https://www.nltk.org/index.html
