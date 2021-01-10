@@ -1,0 +1,5 @@
+This repository houses all scripts and corpora used in my high school senior project.
+With Professor Christiane Fellbaum’s oversight, I implemented a basic version of word2vec
+and conducted web scraping to assemble a corpus composed of articles from CNN’s online
+Politics section. In the future, I hope to compile corpora from other sites and compare 
+embedding similarity across the corpora so as to analyze bias.
